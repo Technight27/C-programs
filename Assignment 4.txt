@@ -1,0 +1,298 @@
+1. Write a program to print a string.
+
+#include<stdio.h>
+
+int main()
+{
+    char a[100];
+
+    printf("Please write something: \n");
+    scanf("%s", a);
+    
+    printf("You enter the string:\t%s\n", a);
+    return 0; 
+}
+
+
+Output:Please write something: 
+hello everyone
+You enter the string:   hello everyone
+
+
+2. Write a program to find the length of a string:
+a. Using ‘strlen’ function
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char a[100];
+  int length;
+
+  printf("Enter a string to calculate its length:\n");
+  gets(a);
+
+  length = strlen(a);
+
+  printf("Length of the string = %d\n", length);
+
+  return 0;
+}
+
+
+Output:
+Enter a string to calculate its length: LOVE
+Length of the string = 4
+
+
+b. Without using ‘strlen’ function
+
+#include <stdio.h>
+int main()
+{
+  char s[1000];
+  int c = 0;
+   printf("Input a string\n");
+  gets(s);
+
+  while (s[c] != '\0')
+  {
+    c++;
+}
+  printf("Length of the string: %d\n", c);
+
+  return 0;
+}
+
+Output:
+Input a string:  LOVE
+Length of the string:4
+
+
+c. Using a character pointer
+
+#include<stdio.h>
+int main() {
+  char str[20], *pt;
+  int i = 0;
+  printf("Enter Any string [below 20 chars] : ");
+  gets(str);
+  pt = str;
+  while (*pt != '\0') {
+    i++;
+    pt++;
+  }
+  printf("Length of String : %d", i);
+
+  return 0;
+}
+
+
+Output:
+Enter Any string [below 20 chars] : LOVE
+Length of String : 4
+
+3. Write a program to concate two strings:
+d. Using ‘strcat’ function
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[100], b[100];
+    
+    printf("Enter the first string\n");
+    gets(a);
+    
+    printf("Enter the second string\n");
+    gets(b);
+    
+    strcat(a,b);
+    
+    printf("String obtained on concatenation is %s\n",a);
+    
+    return 0;
+
+}
+
+Output:
+Enter the first string
+hello
+Enter the second string
+world
+String obtained on concatenation is helloworld
+
+e. Without using ‘strcat’ function
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char a[100], b[100],c[200];
+    
+    printf("Enter the first string\n");
+    gets(a);
+    
+    printf("Enter the second string\n");
+    gets(b);
+     int i = 0, j = 0;
+   
+    while (a[i] != '\0') 
+    {
+        c[j] = a[i];
+        i++;
+        j++;
+    }
+  
+    i = 0;
+    while (b[i] != '\0') 
+    {
+        c[j] = b[i];
+        i++;
+        j++;
+    }
+    c[j] = '\0';
+  
+    printf("\nConcatenated string: %s", c);
+  
+    return 0;
+}
+
+Output:
+Enter the first string
+hello
+Enter the second string
+world
+Concatenated string: helloworld
+
+
+
+4. Write a program to reverse a string.
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+   char s[100];
+
+   printf("Enter a string to reverse\n");
+   gets(s);
+
+   strrev(s);
+
+   printf("Reverse of the string: %s\n", s);
+
+   return 0;
+}
+
+Output:
+Enter a string to reverse
+hello
+Reverse of the string
+olleh
+
+
+5. Write a program to check whether a string is palindrome or not.
+
+#include <stdio.h>
+#include <string.h>
+ 
+void isPalindrome(char str[])
+{
+    int l = 0;
+    int h = strlen(str) - 1;
+ 
+    while (h > l)
+    {
+        if (str[l++] != str[h--])
+        {
+            printf("%s is not a palindrome\n", str);
+            return;
+        }
+    }
+    printf("%s is a palindrome\n", str);
+}
+ 
+int main()
+{
+    isPalindrome("abba");
+    isPalindrome("abbccbba");
+   return 0;
+   }
+   
+Output:
+abba is a palindrome
+abbccbba is a palindrome
+
+6.Write a program to copy source string to destination string.
+a. Using ‘strcpy’ function.
+
+#include<stdio.h>
+#include<string.h>    
+
+main()
+{
+    char source[] = "C Program";    
+    char destination[50];    
+    strcpy(destination, source);    
+    printf("Source string: %s\n", source);    
+    printf("Destination string: %s\n", destination);    
+    return 0;
+}
+
+Output:
+Source string: C Program
+Destination string: C Program
+
+
+b. Without using ‘strcpy’ function.
+
+#include <stdio.h>
+int main() 
+{
+    char s1[100], s2[100], i;
+    printf("Enter string s1: ");
+    gets(s1);
+   for (i = 0; s1[i] != '\0'; ++i) 
+   {
+        s2[i] = s1[i];
+    }
+
+    s2[i] = '\0';
+    printf("String s2: %s", s2);
+    return 0;
+}
+
+Output:
+Enter string s1: hello
+String s2: hello
+
+7. Write a program to compare two strings.
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+   char a[100], b[100];
+
+   printf("Enter a string\n");
+   gets(a);
+
+   printf("Enter a string\n");
+   gets(b);
+
+   if (strcmp(a,b) == 0)
+      printf("The strings are equal.\n");
+   else
+      printf("The strings are not equal.\n");
+
+   return 0;
+}
+
+Output: 
+Enter a string
+hello
+Enter a string
+hello
+The strings are equal

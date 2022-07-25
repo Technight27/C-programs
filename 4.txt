@@ -1,0 +1,16 @@
+4.  Write a C Program to Find the Frequency of Characters in a String
+
+#include<stdio.h>
+void main()
+{
+    char a[20];
+    int n[26]={0},i;
+    printf("Enter your name: ");
+    gets(a);
+    for(i=0;a[i]!='\0';i++){
+        n[a[i]-97]++;
+    }
+    for(i=0;i<26;i++){
+        if (n[i]!=0)
+            printf("%c occurs %d times\n",i+97,n[i]);
+    }

@@ -1,0 +1,27 @@
+2.  Reverse a string by swapping.
+
+
+include<stdio.h>
+void strrev1(char a[])
+{
+    int i,t,j;
+    char b;
+    for(i=0;a[i]!='\0';i++);
+    t=i-1;
+    for(j=0;j<i/2;j++)
+    {
+        b=a[j];
+        a[j]=a[t];
+        a[t]=b;
+        t--;
+    }
+    
+}
+void main()
+{
+    char a[30];
+    printf("Enter your string: ");
+    gets(a);
+    strrev1(a);
+    printf("%s",a);
+}

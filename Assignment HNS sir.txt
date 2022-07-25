@@ -1,0 +1,396 @@
+1.#include <stdio.h>
+#include <string.h>
+
+typedef struct{
+    
+    int front;     
+    char array[100]; 
+    
+    
+    
+}stack;
+
+void push(stack *s,char c)
+{
+    s->front++;
+    
+    if(s->front>=100)
+    {
+        printf("\Stack is overflow.\p");
+        
+    }else
+    {
+       
+        s->array[s->front]=c;
+    }
+    
+}
+char pop(stack *s)
+{  
+    if(s->front<0)
+    {
+
+    
+        printf("Stack is underflow\p");
+        
+
+    }else
+    {s->front--;
+
+      return s->array[s->front+1];         
+        
+    }
+     
+}
+
+
+int main(void) {
+
+printf("write a infix expesson\n");
+
+char strin[100],tempora; 
+
+scanf("%s",strin); 
+
+int p = strlen(strin),r=0; 
+
+
+stack s;
+
+s.front=-1; 
+
+printf(" your Postfix expesson \n");
+
+
+
+for(int i=0;i<=p;i++)
+{
+    if( !(strin[i]>='0'&& strin[i]<='9' ) && r==1   )
+   printf("");
+    
+    
+    if(strin[i]>='0' &&  strin[i]<='9' )
+    { r=1;
+      printf("%c",strin[i]);
+      
+       continue;
+    }
+    
+    
+    
+   if( strin[i]==')' || strin[i]=='}' || strin[i]==']'  )
+    { r=0;
+
+        printf("%c ",pop(&s));
+
+        tempora=pop(&s);
+
+        while( !( tempora=='(' || tempora=='{'|| tempora=='[' ) ) 
+        {    
+            
+            printf("%c",tempora);
+
+
+
+            if( (s.front)==0)
+            break;
+            
+
+            tempora=pop(&s);
+
+
+        
+        }
+        
+        
+        
+        continue;
+    }
+    if(strin[i]=='\0')
+    {   tempora="";
+    
+         while( 3) 
+         
+        {   
+           
+           
+            tempora=pop(&s);
+        
+            
+            printf("%c ",tempora);
+             if( (s.front)==-1)
+            break;
+            
+        }
+        
+        
+    }
+
+   
+   push(&s,strin[i]);
+   
+   r=0;
+   
+}
+
+
+
+	return 0;
+}
+
+
+
+2.#include <stdio.h>
+#include <string.h>
+
+
+typedef struct{
+    
+    int front;
+    
+    int array[100];
+    
+    
+    
+}stack;
+
+void push(stack *s,int c)
+{
+    s->front++;
+    
+    if(s->front>=100)
+    {
+        printf("\nError \n");
+        
+    }else
+    {
+       
+        s->array[s->front]=c;
+    }
+    
+}
+int pop(stack *s)
+{  
+    
+    if(s->front<0)
+    {
+    
+        printf("\nError\n");
+        
+    }else
+    {s->front--;
+      return s->array[s->front+1];         
+        
+    }
+     
+}
+
+
+
+
+
+
+
+int main(void) {
+
+printf("write postfix expesson\n");
+
+char strion[100];  
+
+
+scanf("%s",strion);  
+
+int n = strlen(strion),h,g,m; 
+
+stack s; 
+
+s.front=-1;  
+
+printf("Value is \n");
+
+
+for(int i=0;i<n;i++)
+{
+
+
+
+    
+    if(strion[i]>='0' &&  strion[i]<='9' )
+    { 
+    
+    
+ push(&s, (int)(strion[i]-'0') );
+       
+       
+continue;
+    }
+    
+    
+    
+    h= pop(&s);
+    
+    g=pop(&s);
+    
+    
+    m=(int)strion[i];
+
+    
+    switch (m)
+    {
+        case 43: h=h+g; push(&s, h  );
+        break;
+        
+        case 45 : h=g-h; push(&s, h  );
+        break;
+        
+        case 42: h=h*g; push(&s, h  );
+        break;
+        
+        case 47: h=g/h;  push(&s, h  );
+        break;
+        
+       default:  printf("\nError\n");
+       break;
+       
+        
+    }
+    
+}
+int ans=pop(&s);
+printf("%d",ans);
+
+	return 0;
+}
+
+
+3.#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct Q
+{
+ char name[20];
+ int sn;
+ char dest[20];
+}pass_det[20];
+
+int f=-1,r=-1,size=20,c=0;
+
+void Take_Details()
+{
+	
+ printf("Enter Passenger's name : ");
+ getchar();
+ gets(pass_det[r].name);
+	
+ printf("Enter Destination : ");
+ gets(pass_det[r].dest);
+	
+	
+	
+ pass_det[r].sn=++c;
+	
+}
+
+void Display()
+{
+ if (f==-1)
+  printf("\n\n Queue is EMPTY!");
+ else
+ {
+  
+  printf("\n\nS.no | Name | Destination\n");
+  for (int i=f;i<=r;i++)
+  {
+
+   printf(" \n%d. |", pass_det[i].sn);
+   printf("%20s |", pass_det[i].name);
+   printf("%20s \n", pass_det[i].dest);
+  }
+ }
+}
+
+
+void New_Booking()
+{
+	
+ if(r==size-1)
+  printf("Line full");
+ else if(r==-1)
+ {
+  r=f=0;
+  Take_Details();
+ }
+ else
+ {
+  r++;
+  Take_Details();
+ }
+}
+
+void Board()
+{
+ if(f==-1)
+  printf("No passengers in Queue");
+ else
+ {
+  printf("\n%d, ", pass_det[f].sn);
+  printf("%s for ", pass_det[f].name);
+  printf("%s ", pass_det[f].dest); 
+  
+  printf("has BOARDED!");
+  if(f==r)
+   f=r=-1;
+  else
+   f++;
+  printf("\n\n Updated Queue :");
+  Display();
+ }
+}
+
+void Menu()
+{
+ char an;
+ int op,f=0;
+ printf("Welcome to Puspendu Xpress Train Booking System.\nThe Queue can contain upto 20 passengers.\n\n");
+ do
+ {
+ if(f==1)
+  system("cls");
+ printf("1. New Booking\n2. Display Queue\n3. Board Passenger\n4. Exit");
+ printf("\nSelect an option : ");
+ scanf("%d",&op);
+	
+	
+	
+ switch(op)
+ {
+  case 1:
+   New_Booking();
+   break;
+  case 2:
+   printf("\n Passengers currently in the Queue : ");
+   Display();
+   break;
+  case 3:
+   Board();
+   break;
+  case 4:
+   exit(0);
+  default:
+   printf("\nINVALID CHOICE!\n");
+ }
+	
+ printf("\nDo you want to Continue(y/n)?");
+	
+ scanf(" %c",&an);
+	
+ f=1;
+	
+ }while(an=='y');
+ exit(0);
+}
+
+void main()
+{
+ Menu();
+}

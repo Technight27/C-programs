@@ -1,0 +1,52 @@
+5.C program to replace a word.
+
+
+#include<stdio.h>
+#include <string.h>
+void main()
+{
+    
+	char s1[100], w[100], ch, sw[100], rw[100];
+	int i, k;
+
+	printf("\nEnter string :\t");
+	gets(s1);
+
+	printf("\nEnter search word :\t");
+	gets(sw);
+
+	printf("\nEnter replace word :\t");
+	gets(rw);
+
+	printf("\nNew string is:\t");
+	strcat(s1," ");
+	
+	k = 0;
+	
+	for(i = 0; s1[i] != '\0'; i++)
+	{
+		ch = s1[i];
+		
+		if(ch != ' ')
+		{
+			w[k] = ch;
+			k++;
+		}
+		else
+		{
+			w[k] = '\0';
+			k = 0;
+			
+			if(strcmp(w,sw) == 0)
+			{
+				printf("%s ",rw);
+			}
+			else
+			{
+				printf("%s ",w);
+			}
+		}
+	}
+
+}
+

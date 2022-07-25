@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <string.h>
+
+
+typedef struct{
+    
+    int front;
+    
+    int array[100];
+    
+    
+    
+}stack;
+
+void push(stack *s,int c)
+{
+    s->front++;
+    
+    if(s->front>=100)
+    {
+        printf("\nError \n");
+        
+    }else
+    {
+       
+        s->array[s->front]=c;
+    }
+    
+}
+int pop(stack *s)
+{  
+    
+    if(s->front<0)
+    {
+    
+        printf("\nError\n");
+        
+    }else
+    {s->front--;
+      return s->array[s->front+1];         
+        
+    }
+     
+}
+
+
+
+
+
+
+
+int main(void) {
+
+printf("write postfix expesson\n");
+
+char strion[100];  
+
+
+scanf("%s",strion);  
+
+int n = strlen(strion),h,g,m; 
+
+stack s; 
+
+s.front=-1;  
+
+printf("Value is \n");
+
+
+for(int i=0;i<n;i++)
+{
+
+
+
+    
+    if(strion[i]>='0' &&  strion[i]<='9' )
+    { 
+    
+    
+ push(&s, (int)(strion[i]-'0') );
+       
+       
+continue;
+    }
+    
+    
+    
+    h= pop(&s);
+    
+    g=pop(&s);
+    
+    
+    m=(int)strion[i];
+
+    
+    switch (m)
+    {
+        case 43: h=h+g; push(&s, h  );
+        break;
+        
+        case 45 : h=g-h; push(&s, h  );
+        break;
+        
+        case 42: h=h*g; push(&s, h  );
+        break;
+        
+        case 47: h=g/h;  push(&s, h  );
+        break;
+        
+       default:  printf("\nError\n");
+       break;
+       
+        
+    }
+    
+}
+int ans=pop(&s);
+printf("%d",ans);
+
+	return 0;
+}
