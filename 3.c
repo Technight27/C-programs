@@ -7,6 +7,6 @@ int main()
     scanf("%lf %lf %lf",&a,&b,&c);
     d=a+b+c;
     e=d/3;
-    printf("The sum and avarage of the three numbers %lf,%lf,%lf are respectively %lf and %lf",a,b,c,d,e);
+    printf("The su and avarage of the three numbers %lf,%lf,%lf are respectively %lf and %lf",a,b,c,d,e);
     return 0;
 }
